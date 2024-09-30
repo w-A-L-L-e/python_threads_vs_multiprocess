@@ -41,3 +41,23 @@ python multi_example.py  12.30s user 0.02s system 479% cpu 2.569 total
 
 Tested with python 3.9 and 3.12 with similar results (above timings were with 3.9. in 3.12 both are a little faster
 but still the multiprocess version is roughly 5 times faster than the threaded one).
+
+Just for completeness I did the same exercise of writing 5 threads that do a
+heavy computation with c++.
+And here we do see 5 cores going to 99% cpu usage. (For this a Makefile and threads.cpp was added as a quick example).
+
+```
+make
+g++  threads.cpp -o threads_with_cpp -lpthread
+(python_env) ➜  threads_vs_multiprocess git:(main) ✗ ./threads_with_cpp
+Starting thread 0
+Starting thread 1
+Starting thread 2
+Starting thread 3
+Starting thread 4
+```
+
+When you now run htop and search for threads_with_cpp you see this, proving that
+when you use c++ you don't have a GIL and therefore threads really work on seperate cpu cores:
+
+Here's a screenshot of the threads_with_cpp running on my machine:
