@@ -45,18 +45,26 @@ but still the multiprocess version is roughly 5 times faster than the threaded o
 ## Using threads in c++
 
 Just for completeness I did the same exercise of writing 5 threads that do a
-heavy computation (simulated with a similar busy loop) with c++.
+heavy computation (simulated with a similar busy loop but added some more iterations and used a sum so that
+the compiler doesnt optimize it away) with c++.
 And here we do see 5 cores going to 99% cpu usage. (For this a Makefile and threads.cpp was added as a quick example).
 
 ```
-make
+$ make
 g++  threads.cpp -o threads_with_cpp -lpthread
-(python_env) ➜  threads_vs_multiprocess git:(main) ✗ ./threads_with_cpp
+
+$ time ./threads_with_cpp
 Starting thread 0
 Starting thread 1
 Starting thread 2
 Starting thread 3
 Starting thread 4
+Thread 3 finished. test= 20.1951
+Thread 2 finished. test= 20.1951
+Thread 0 finished. test= 20.1951
+Thread 4 finished. test= 20.1951
+Thread 1 finished. test= 20.1951
+./threads_with_cpp  14.61s user 0.00s system 494% cpu 2.958 total
 ```
 
 When you now run htop and search for threads_with_cpp you see this, proving that
