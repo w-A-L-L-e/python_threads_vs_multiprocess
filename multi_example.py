@@ -1,4 +1,4 @@
-#!/bin/env/python
+#!/bin/env python
 #
 # Description: Some quickly written example of doing same computation with multiprocessing instead of threads
 # Author:      Walter Schreppers

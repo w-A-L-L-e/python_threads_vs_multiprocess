@@ -1,4 +1,4 @@
-#!/bin/env/python
+#!/bin/env python
 #
 # Description:  Simple test that starts some threads and does a busy loop to simulate
 #               some heavy computation
