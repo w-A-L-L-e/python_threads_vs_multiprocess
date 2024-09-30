@@ -38,4 +38,3 @@ test=3.333333222222226e-08
 test=3.333333222222226e-08
 python multi_test.py  12.30s user 0.02s system 490% cpu 2.513 total
 ```
-# python_threads_vs_multiprocess
