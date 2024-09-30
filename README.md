@@ -42,7 +42,6 @@ python multi_example.py  12.30s user 0.02s system 479% cpu 2.569 total
 Tested with python 3.9 and 3.12 with similar results (above timings were with 3.9. in 3.12 both are a little faster
 but still the multiprocess version is roughly 5 times faster than the threaded one).
 
-
 ## Using threads in c++
 
 Just for completeness I did the same exercise of writing 5 threads that do a
@@ -66,13 +65,9 @@ when you use c++ you don't have a GIL and therefore threads really work on seper
 Here's a screenshot of the threads_with_cpp running on my machine:
 ![Screenshot from 2024-09-30 21-42-47](https://github.com/user-attachments/assets/cb4b2ce2-59ca-4eaf-adea-45c3f755c156)
 
-@@ Conclusions
+## Conclusions
 
 Right now, when using python it's still best to use multi processing if you want all your cores to do some work. Sure you loose a bit of memory with multiple python interpreters being started but it allows you to churn through a lot of data more quickly by using multiple cpu cores.
 
 With c++ and java you can also just use threads to perform something on multiple cpu cores (unlike with python where this didnt work in above example). This is also most likely why the latest python versions now want to move to having an option to turn of the GIL. This however makes it harder for a lot of libraries to be thread safe and most likely a lot of existing pip packages will break when running without the GIL.
 And most likely there is some pip package out there using green threads or something that also allows doing something similar to c++ but as python makes multi processing so simple and straightforward, for now I'm sticking with that.
-
-
-
-
